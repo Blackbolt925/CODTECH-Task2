@@ -4,27 +4,36 @@ import tensorflow as tf
 import re
 from numpy import array
 
-from keras.preprocessing.text import one_hot, Tokenizer
-from keras.models import Sequential, load_model
-from keras.layers import LSTM
-from keras.layers.core import Activation, Dropout, Dense
-from keras.layers import Flatten, GlobalMaxPooling1D, Embedding, Conv1D, LSTM
+from tensorflow.keras.preprocessing.text import one_hot, Tokenizer
+from tensorflow.keras.models import Sequential, load_model
+from tensorflow.keras.layers import LSTM
+from tensorflow.keras.layers import Activation, Dropout, Dense
+from tensorflow.keras.layers import Flatten, GlobalMaxPooling1D, Embedding, Conv1D, LSTM
 from sklearn.model_selection import train_test_split
 from flask import Flask, request, jsonify, render_template
-from keras_preprocessing.sequence import pad_sequences
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 import nltk
 from nltk.corpus import stopwords
-from keras_preprocessing.text import tokenizer_from_json
+from tensorflow.keras.preprocessing.text import tokenizer_from_json
 import io
 import json
 
 stopwords_list = set(stopwords.words('english'))
 maxlen = 100
-
+'''
+from keras.layers import TFSMLayer
+loaded_model = TFSMLayer("./sentiment_IMDb_model_acc_0.853", call_endpoint="serving_default")
+'''
+'''
 from tensorflow.keras.models import load_model
 
 # Replace the path with your actual saved model directory
-loaded_model = load_model(f"./sentiment_IMDb_model_acc_{round(scores[1], 3)}")
+loaded_model = load_model(f"./sentiment_IMDb_model_acc_0.853")
+'''
+from tensorflow.keras.models import load_model
+
+# Load the saved model
+loaded_model = load_model('sentiment_IMDb_model.h5')
 
 with open('tokenizer.json') as f:
     data=json.load(f)

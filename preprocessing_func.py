@@ -19,6 +19,6 @@ class Preprocess():
         sentence = re.sub('[^a-zA-Z]',' ',sentence) #punctuations and numbers
         sentence = re.sub(r"\s+[a-zA-Z]\s+", ' ', sentence)  # When we remove apostrophe from the word "Mark's", the apostrophe is replaced by an empty space. Hence, we are left with single character "s" that we are removing here.
         sentence = re.sub(r'\s+', ' ', sentence) # Next, we remove all the single characters and replace it by a space which creates multiple spaces in our text. Finally, we remove the multiple spaces from our text as well.
-        sentence = re.compile(r'\b(' + r'|'.join(stopwords_list) + r')\b\s*')
+        pattern = re.compile(r'\b(' + r'|'.join(stopwords_list) + r')\b\s*')
         sentence= pattern.sub('',sentence)
         return sentence
